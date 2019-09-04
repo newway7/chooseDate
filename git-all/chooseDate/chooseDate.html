@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>demo 日期选择</title>
+
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/change_date_prompt.css">
+    <link rel="stylesheet" href="css/change_date.css" />
+
+
+
+
+
+    <!-- 引入flexible.min.js，自适应终端屏幕 -->
+    <script src="js/flexible.js"></script>
+
+
+
+</head>
+
+
+<body>
+
+
+    <div class="encircle">
+        <div class="line-group">
+            <span class="line-title-change">开始时间</span>
+            <label for="startDate">
+                <input class="kinerDatePickerInput j-start-date" id="startDate" placeholder="请选择开始时间"
+                    style="color:#ccc;" />
+
+            </label>
+        </div>
+
+        <div class="line-group">
+            <span class="line-title-change">结束时间</span>
+
+            <label for="EndDate">
+
+                <input class="kinerDatePickerInput j-end-date" id="EndDate" placeholder="请选择结束时间" style="color:#ccc;" />
+
+            </label>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/swiper.min.js"></script>
+    <script src="js/kinerDatePicker.js"></script>
+
+
+    <script>
+        var now = new Date()
+        now = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+        var nowISO = new Date(now.getTime() + 8 * 60 * 60 * 1000); //
+
+        var nowTime = nowISO.toISOString().substring(0, 10); //+8小时，再使用toISOString()，生成指定日期的####-##-##形式；
+        //为了防止早上8点以前使用new Date()方法,再使用toISOString()，得到前一天日期的字符串；
+
+
+
+        var AyearAgo = new Date(nowISO.getFullYear() - 1, nowISO.getMonth(), nowISO.getDate() + 2);
+        //之所以要+2，是因为：比如今天2019年9月3日。要获取2018年9月4日，日期需要+1，
+        //使用new Date()方法之后再用toISOString()，得到的是前一天日期的字符串；因此还需要+1
+
+
+        var AyearAgoTime = AyearAgo.toISOString().substring(0, 10);
+
+
+
+        $('#startDate').kinerDatePicker({
+            startDate: AyearAgoTime,
+            endDate: nowTime,
+            clickMaskHide: true,
+
+
+        });
+        $('#EndDate').kinerDatePicker({
+            startDate: AyearAgoTime,
+            endDate: nowTime,
+            clickMaskHide: true,
+
+
+        });
+    </script>
+
+</body>
+
+</html>
