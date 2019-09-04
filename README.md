@@ -1,4 +1,6 @@
 # chooseDate
+# 预览效果 （该例子设置的时间区间是一年前到今日）
+#  https://newway7.github.io/chooseDate/git-all/chooseDate/chooseDate.html
 
 ## 自定义时间区间以供用户选择
 
